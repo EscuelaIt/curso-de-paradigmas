@@ -1,1 +1,1 @@
-# paradigms
+# samples
