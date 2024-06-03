@@ -15,12 +15,12 @@ public class App {
 
     Interval range = new Interval(0,10);
 
-    System.out.println("Inicial: " + intervalList.toString());
+    System.out.println("Inicial: " + intervalList);
     intervalList.removeIf(interval -> interval.isOnLeft(range) || interval.isOnRight(range));
-    System.out.println("Filtrada: " + intervalList.toString());
+    System.out.println("Filtrada: " + intervalList);
     intervalList.replaceAll(interval -> interval.intersection(range));
-    System.out.println("Aplicada: " + intervalList.toString());
-    double lengths = 0;
+    System.out.println("Aplicada: " + intervalList);
+    double lengths = 0.0;
     // intervalList.forEach(interval -> lengths += interval.getLength());
     // intervalList.iterator().forEachRemaining(interval -> lengths += interval.getLength());
     for (Interval interval : intervalList) {

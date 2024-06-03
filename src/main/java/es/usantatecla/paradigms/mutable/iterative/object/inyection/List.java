@@ -4,6 +4,10 @@ public class List<T> {
 
   private Node<T> head;
 
+  public List() {
+    this.head = null;
+  }
+
   public void add(T element) {
     Node<T> node = new Node<T>(element);
     if (this.head == null) {
@@ -17,31 +21,13 @@ public class List<T> {
     }
   }
 
-  public String toString() {
-    String result = "";
-    Node<T> current = this.head;
-    while (current != null) {
-      result += current.getElement().toString() + "\n";
-      current = current.getNext();
-    }
-    return result;
-  }
-
-  protected Node<T> getHead() {
-    return this.head;
-  }
-
-  protected void setHead(Node<T> head) {
-    this.head = head;
-  }
-
-  public void filter(Filter<T> filter) {
+  public void filter(Predicate<T> predicate) {
     Node<T> current = this.getHead();
     Node<T> previous = null;
     while (current != null) {
       T currentElement = current.getElement();
       Node<T> next = current.getNext();
-      if (filter.check(currentElement)) {
+      if (predicate.test(currentElement)) {
         if (previous == null) {
           this.setHead(next);
         } else {
@@ -53,23 +39,42 @@ public class List<T> {
     }
   }
 
-  public void map(Mapper<T> mapper) {
+  public void map(UnaryOperator<T> unaryOperator) {
     Node<T> current = this.getHead();
     while (current != null) {
       T currentElement = current.getElement();
-      current.setElement(mapper.map(currentElement));
+      current.setElement(unaryOperator.apply(currentElement));
       current = current.getNext();
     }
   }
 
-  public double doubleReduce(DoubleReductor<T> reductor){
+  public double reduce(double identity, ToDoubleFunction<T> toDoubleFunction) {
     Node<T> current = this.getHead();
+    double lengths = identity;
     while (current != null) {
       T currentElement = current.getElement();
-      reductor.reduce(currentElement);
+      lengths += toDoubleFunction.applyAsDouble(currentElement);
       current = current.getNext();
     }
-    return reductor.getResult();
+    return lengths;
+  }
+
+  protected Node<T> getHead() {
+    return this.head;
+  }
+
+  protected void setHead(Node<T> head) {
+    this.head = head;
+  }
+
+  public String toString() {
+    String result = "[";
+    Node<T> current = this.head;
+    while (current != null) {
+      result += current.getElement().toString() + (current.isLast() ? "" : ",");
+      current = current.getNext();
+    }
+    return result + "]";
   }
 
 }

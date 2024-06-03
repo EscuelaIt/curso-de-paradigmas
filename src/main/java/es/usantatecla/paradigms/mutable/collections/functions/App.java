@@ -18,20 +18,20 @@ public class App {
 
     Interval range = new Interval(0,10);
 
-    System.out.println("Inicial: " + intervalList.toString());
-    Predicate<Interval> filter =
+    System.out.println("Inicial: " + intervalList);
+    Predicate<Interval> predicate =
       interval -> interval.isOnLeft(range) || interval.isOnRight(range);
-    intervalList.removeIf(filter);
-    System.out.println("Filtrada: " + intervalList.toString());
-    UnaryOperator<Interval> mapper =
+    intervalList.removeIf(predicate);
+    System.out.println("Filtrada: " + intervalList);
+    UnaryOperator<Interval> unaryOperator =
       interval -> interval.intersection(range);
-    intervalList.replaceAll(mapper);
-    System.out.println("Aplicada: " + intervalList.toString());
-    double lengths = 0;
-    // Consumer<Interval> reducer =
+    intervalList.replaceAll(unaryOperator);
+    System.out.println("Aplicada: " + intervalList);
+    double lengths = 0.0;
+    // Consumer<Interval> consumer =
     //   interval -> lengths += interval.getLength();
-    // intervalList.forEach(reducer);
-    // intervalList.iterator().forEachRemaining(reducer);
+    // intervalList.forEach(consumer);
+    // intervalList.iterator().forEachRemaining(consumer);
     for (Interval interval : intervalList) {
       lengths += interval.getLength();
     }

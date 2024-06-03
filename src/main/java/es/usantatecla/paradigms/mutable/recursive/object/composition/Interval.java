@@ -1,17 +1,12 @@
 package es.usantatecla.paradigms.mutable.recursive.object.composition;
-
 public class Interval {
 
-  private int min;
-  private int max;
+  private double min;
+  private double max;
 
-  public Interval(int min, int max) {
+  public Interval(double min, double max) {
     this.min = min;
     this.max = max;
-  }
-
-  public void print(){
-    System.out.println("[" + this.min + ", " + this.max + "]");
   }
 
   public boolean isOnLeft(Interval interval) {
@@ -28,7 +23,7 @@ public class Interval {
       || this.include(interval);
   }
 
-  private boolean include(int min) {
+  private boolean include(double min) {
     return this.min <= min && min <= this.max;
   }
 
@@ -51,12 +46,20 @@ public class Interval {
     return new Interval(interval.min, this.max);
   }
 
-  public int getMin() {
+  public double getLength() {
+    return this.max - this.min;
+  }
+
+  public double getMin() {
     return this.min;
   }
 
-  public int getMax() {
+  public double getMax() {
     return this.max;   
   }
+
+  public String toString(){
+    return "[" + this.min + ", " + this.max + "]";
+ }
 
 }

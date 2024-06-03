@@ -1,5 +1,4 @@
 package es.usantatecla.paradigms.mutable.iterative.object.inherits;
-
 public class Interval {
 
   private double min;
@@ -19,9 +18,9 @@ public class Interval {
   }
 
   public boolean isIntersected(Interval interval) {
-    return interval.include(this.min)
-        || interval.include(this.max)
-        || this.include(interval);
+    return interval.include(this.min) 
+      || interval.include(this.max) 
+      || this.include(interval);
   }
 
   private boolean include(double min) {
@@ -35,13 +34,13 @@ public class Interval {
   public Interval intersection(Interval interval) {
     assert this.isIntersected(interval);
 
-    if (this.include(interval)) {
+    if (this.include(interval)){
       return interval;
     }
-    if (interval.include(this)) {
+    if (interval.include(this)){
       return this;
     }
-    if (interval.include(this.min)) {
+    if (interval.include(this.min)){
       return new Interval(this.min, interval.max);
     }
     return new Interval(interval.min, this.max);
@@ -56,11 +55,11 @@ public class Interval {
   }
 
   public double getMax() {
-    return this.max;
+    return this.max;   
   }
 
-  public String toString() {
+  public String toString(){
     return "[" + this.min + ", " + this.max + "]";
-  }
+ }
 
 }

@@ -2,6 +2,10 @@ package es.usantatecla.paradigms.mutable.iterative.object.inherits;
 
 public class IntervalList extends List<Interval> {
 
+  public IntervalList(){
+    super();
+  }
+
   public void filter(Interval interval) {
     Node<Interval> current = this.getHead();
     Node<Interval> previous = null;
@@ -32,14 +36,14 @@ public class IntervalList extends List<Interval> {
     }    
   }
 
-  public double doubleReduce(Interval interval) {
+  public double reduce(double identity, Interval interval) {
     Node<Interval> current = this.getHead();
-    double lengths = 0;
+    double lengths = identity;
     while (current != null){
       lengths += current.getElement().getLength();
       current = current.getNext();
     } 
-    return lengths / interval.getLength();
+    return lengths;
   }
 
 }

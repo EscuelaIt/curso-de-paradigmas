@@ -1,0 +1,16 @@
+@startuml
+
+class App
+App ..> IntervalList
+class "List<T>" as ListT
+class "List<Interval>" as ListInterval
+ListT <|.. ListInterval : <<instance>>
+class IntervalList 
+ListInterval <|-- IntervalList
+class "Node<T>" as NodeT
+class "Node<Interval>" as NodeInterval
+ListInterval o--> NodeInterval
+NodeT <|.. NodeInterval : <<instance>>
+ListT o--> NodeT
+NodeInterval *--> Interval
+@enduml

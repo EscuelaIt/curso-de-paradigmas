@@ -12,37 +12,30 @@ public class App {
 
     Interval range = new Interval(0,10);
 
-    System.out.println("Inicial:\n" + intervalList.toString());
-    intervalList.filter(new Filter<Interval>() {
-      @Override
-      public boolean check(Interval element) {
+    System.out.println("Inicial: " + intervalList);
+    intervalList.filter(new Predicate<Interval>() {
+      public boolean test(Interval element) {
         return element.isOnLeft(range) 
         || element.isOnRight(range);
       }
     });
-    System.out.println("Filtrada:\n" + intervalList.toString());
-    intervalList.map(new Mapper<Interval>() {
-      @Override
-      public Interval map(Interval element) {
+    System.out.println("Filtrada: " + intervalList);
+    intervalList.map(new UnaryOperator<Interval>() {
+      public Interval apply(Interval element) {
         if (element.isIntersected(range)) {
           return element.intersection(range);
         }
         return null;
       }
     });
-    System.out.println("Aplicada:\n" + intervalList.toString());
-    System.out.println("Reducida: " + intervalList.doubleReduce(new DoubleReductor<Interval>() {
+    System.out.println("Aplicada: " + intervalList);
+    System.out.println("Reducida: " + intervalList.reduce(0.0, new ToDoubleFunction<Interval>() {
+    
+      public double applyAsDouble(Interval interval){
+        return interval.getLength();
+      }
 
-      private double lengths;
-    
-      public void reduce(Interval interval){
-        this.lengths += interval.getLength();
-      }
-    
-      public double getResult(){
-        return this.lengths / range.getLength();
-      }
-    } ));
+    }) / range.getLength());
   }
 
 }

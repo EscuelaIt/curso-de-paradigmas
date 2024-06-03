@@ -12,12 +12,12 @@ public class App {
 
     Interval range = new Interval(0,10);
 
-    System.out.println("Inicial:\n" + intervalList.toString());
-    intervalList.filter(new IntervalFilter(range));
-    System.out.println("Filtrada:\n" + intervalList.toString());
-    intervalList.map(new IntervalMapper(range));
-    System.out.println("Aplicada:\n" + intervalList.toString());
-    System.out.println("Reducida: " + intervalList.doubleReduce(new IntervalDoubleReductor(range)));
+    System.out.println("Inicial: " + intervalList);
+    intervalList.filter(new IntervalPredicate(range));
+    System.out.println("Filtrada: " + intervalList);
+    intervalList.map(new IntervalUnaryOperator(range));
+    System.out.println("Aplicada: " + intervalList);
+    System.out.println("Reducida: " + intervalList.reduce(0.0, new IntervalToDoubleFunction())  / range.getLength());
   }
 
 }

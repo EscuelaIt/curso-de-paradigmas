@@ -1,0 +1,53 @@
+package es.usantatecla.paradigms.mutable.recursive.object.inherits;
+
+public class IntervalList extends List<Interval> {
+
+  public IntervalList(){
+    super();
+  }
+
+  public IntervalList(Node<Interval> head) {
+    super(head);
+  }
+
+  public void filter(Interval interval) {
+    Node<Interval> head = this.getHead();
+    if (head != null) {
+      IntervalList tail = this.getTail();
+      tail.filter(interval);
+      Interval headInterval = head.getElement();
+      if (headInterval.isOnLeft(interval) 
+          || headInterval.isOnRight(interval)){
+        this.head = tail.head;    
+      } else {
+        head.setNext(tail.getHead());
+      }
+    }
+  }
+
+  public IntervalList getTail() {
+    return new IntervalList(this.getHead().getNext());
+  }
+
+  public void map(Interval interval) {
+    Node<Interval> head = this.getHead();
+    while (head != null){
+      Interval headInterval = head.getElement();
+      if (headInterval.isIntersected(interval)){
+        head.setElement(headInterval.intersection(interval));
+      }
+      head = head.getNext();
+    }    
+  }
+
+  public double doubleReduce(double identity, Interval interval) {
+    Node<Interval> head = this.getHead();
+    double lengths = identity;
+    while (head != null){
+      lengths += head.getElement().getLength();
+      head = head.getNext();
+    } 
+    return lengths;
+  }
+
+}

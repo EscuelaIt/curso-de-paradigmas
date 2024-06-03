@@ -42,14 +42,14 @@ public class IntervalList {
     }    
   }
 
-  public double doubleReduce(Interval interval) {
+  public double reduce(double identity, Interval interval) {
     Node<Interval> current = this.list.getHead();
-    double lengths = 0;
+    double lengths = identity;
     while (current != null){
       lengths += current.getElement().getLength();
       current = current.getNext();
     } 
-    return lengths / interval.getLength();
+    return lengths;
   }
 
   public String toString() {

@@ -17,20 +17,20 @@ public class App {
 
     Interval range = new Interval(0, 10);
 
-    System.out.println("Inicial: " + intervalList.toString());
+    System.out.println("Inicial: " + intervalList);
     for (Iterator<Interval> iterator = intervalList.iterator(); iterator.hasNext();) {
       Interval current = iterator.next();
       if (current.isOnLeft(range) || current.isOnRight(range)) {
         iterator.remove();
       }
     }
-    System.out.println("Filtrada: " + intervalList.toString());
+    System.out.println("Filtrada: " + intervalList);
     for (ListIterator<Interval> iterator = intervalList.listIterator(); iterator.hasNext();) {
       Interval current = iterator.next();
       iterator.set(current.intersection(range));
     }
-    System.out.println("Aplicada: " + intervalList.toString());
-    double lengths = 0;
+    System.out.println("Aplicada: " + intervalList);
+    double lengths = 0.0;
     for (ListIterator<Interval> iterator = intervalList.listIterator(); iterator.hasNext();) {
       lengths += iterator.next().getLength();
     }

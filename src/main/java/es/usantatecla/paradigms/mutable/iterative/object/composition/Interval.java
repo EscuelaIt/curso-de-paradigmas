@@ -1,5 +1,4 @@
 package es.usantatecla.paradigms.mutable.iterative.object.composition;
-
 public class Interval {
 
   private double min;

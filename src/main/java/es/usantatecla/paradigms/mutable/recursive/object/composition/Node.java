@@ -14,20 +14,20 @@ public class Node<T> {
     return this.element;
   }
 
-  public Node<T> getNext(){
-    return this.next;
+  public void setElement(T element) {
+    this.element = element;
   }
-
+  
   public boolean isLast() {
     return this.next == null;
   }
 
-  public void setNext(Node<T> next){
-    this.next = next;
+  public Node<T> getNext(){
+    return this.next;
   }
 
-  public void setElement(T element) {
-    this.element = element;
+  public void setNext(Node<T> next){
+    this.next = next;
   }
 
 }

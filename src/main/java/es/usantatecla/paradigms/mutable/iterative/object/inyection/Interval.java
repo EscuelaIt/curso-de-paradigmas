@@ -1,5 +1,4 @@
 package es.usantatecla.paradigms.mutable.iterative.object.inyection;
-
 public class Interval {
 
   private double min;
@@ -64,4 +63,3 @@ public class Interval {
  }
 
 }
-

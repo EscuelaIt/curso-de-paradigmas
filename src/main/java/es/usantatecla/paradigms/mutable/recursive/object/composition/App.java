@@ -9,13 +9,15 @@ public class App {
     intervalList.add(new Interval(0,10));
     intervalList.add(new Interval(5,15));
     intervalList.add(new Interval(11,21));
+
     Interval range = new Interval(0,10);
-    intervalList.print("Inicial");
+
+    System.out.println("Inicial: " + intervalList);
     intervalList.filter(range);
-    intervalList.print("Filtrada");
+    System.out.println("Filtrada: " + intervalList);
     intervalList.map(range);
-    intervalList.print("Aplicada");
-    intervalList.reduce();
+    System.out.println("Aplicada: " + intervalList);
+    System.out.println("Reducida: " + intervalList.doubleReduce(0.0, range) / range.getLength());
   }
 
 }

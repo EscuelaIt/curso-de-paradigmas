@@ -32,7 +32,8 @@ public class App {
     System.out.println("Reducida: " +  
     intervalList.stream()
       .filter(interval -> !interval.isOnLeft(range) && !interval.isOnRight(range))
-      .map(interval -> interval.intersection(range).getLength())
+      .map(interval -> interval.intersection(range))
+      .mapToDouble(interval -> interval.getLength())
       .reduce(0.0, (acumulator, length) -> acumulator + length) / range.getLength());
   }
 

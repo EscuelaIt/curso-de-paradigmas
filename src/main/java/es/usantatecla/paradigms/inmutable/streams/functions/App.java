@@ -19,34 +19,34 @@ public class App {
     intervalList.add(new Interval(11,21));
 
     Interval range = new Interval(0,10);
-    Predicate<Interval> filter =
-      interval -> !interval.isOnLeft(range) && !interval.isOnRight(range);
-    UnaryOperator<Interval> mapper =
-      interval -> interval.intersection(range);
-    ToDoubleFunction<Interval> toDouble =
-      interval -> interval.getLength();
-    DoubleBinaryOperator reducer =
-      (left, right) -> left + right;
 
     System.out.println("Inicial: " + 
       intervalList.toString());
+    Predicate<Interval> filter =
+      interval -> !interval.isOnLeft(range) && !interval.isOnRight(range);
     System.out.println("Filtrada: " + 
       intervalList.stream()
         .filter(filter)
         .collect(Collectors.toList())
         .toString());
+    UnaryOperator<Interval> unaryOperator =
+      interval -> interval.intersection(range);
     System.out.println("Aplicada: " + 
       intervalList.stream()
         .filter(filter)
-        .map(mapper)
+        .map(unaryOperator)
         .collect(Collectors.toList())
         .toString());
+    ToDoubleFunction<Interval> toDouble =
+      interval -> interval.getLength();
+    DoubleBinaryOperator doubleBinaryOperator =
+      (left, right) -> left + right;
     System.out.println("Reducida: " +  
       intervalList.stream()
         .filter(filter)
-        .map(mapper)
+        .map(unaryOperator)
         .mapToDouble(toDouble)
-        .reduce(0.0, reducer) / range.getLength());
+        .reduce(0.0, doubleBinaryOperator) / range.getLength());
   }
   
 }
