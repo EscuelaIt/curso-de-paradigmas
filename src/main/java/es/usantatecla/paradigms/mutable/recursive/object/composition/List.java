@@ -1,6 +1,6 @@
 package es.usantatecla.paradigms.mutable.recursive.object.composition;
 
-public class List<T> {
+public class List<T extends Stringable> {
 
   private Node<T> head;
 
@@ -43,13 +43,20 @@ public class List<T> {
   }
 
   public String toString() {
-    String result = "[";
-    Node<T> head = this.head;
-    while (head != null) {
-      result += head.getElement().toString() + (head.isLast()? "" : ", ");
-      head = head.getNext();
+    return "[" + this.toString(this.getHead()) + "]";
+  }
+
+  private String toString(Node<T> head) {
+    if (head == null) {
+      return "";
+    } else {
+      String string = head.getElement().toString();
+      if (head.isLast()) {
+        return string;
+      } else {
+        return string + ", " + this.toString(head.getNext());
+      }
     }
-    return result + "]";
   }
 
 }

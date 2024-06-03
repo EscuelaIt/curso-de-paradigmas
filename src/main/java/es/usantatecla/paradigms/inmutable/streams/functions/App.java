@@ -21,29 +21,27 @@ public class App {
     Interval range = new Interval(0,10);
 
     System.out.println("Inicial: " + 
-      intervalList.toString());
-    Predicate<Interval> filter =
+      intervalList);
+    Predicate<Interval> predicate =
       interval -> !interval.isOnLeft(range) && !interval.isOnRight(range);
     System.out.println("Filtrada: " + 
       intervalList.stream()
-        .filter(filter)
-        .collect(Collectors.toList())
-        .toString());
+        .filter(predicate)
+        .collect(Collectors.toList()));
     UnaryOperator<Interval> unaryOperator =
       interval -> interval.intersection(range);
     System.out.println("Aplicada: " + 
       intervalList.stream()
-        .filter(filter)
+        .filter(predicate)
         .map(unaryOperator)
-        .collect(Collectors.toList())
-        .toString());
+        .collect(Collectors.toList()));
     ToDoubleFunction<Interval> toDouble =
       interval -> interval.getLength();
     DoubleBinaryOperator doubleBinaryOperator =
       (left, right) -> left + right;
     System.out.println("Reducida: " +  
       intervalList.stream()
-        .filter(filter)
+        .filter(predicate)
         .map(unaryOperator)
         .mapToDouble(toDouble)
         .reduce(0.0, doubleBinaryOperator) / range.getLength());

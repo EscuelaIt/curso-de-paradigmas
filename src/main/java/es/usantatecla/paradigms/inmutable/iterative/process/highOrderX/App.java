@@ -1,4 +1,4 @@
-package es.usantatecla.paradigms.mutable.recursive.process.highOrderXXX;
+package es.usantatecla.paradigms.inmutable.iterative.process.highOrderX;
 
 public class App {
   
@@ -17,7 +17,7 @@ public class App {
     System.out.println("Filtrada: " + intervalList.toString.apply(intervalList));
     intervalList.map.accept(intervalList, interval -> interval.intersection.apply(interval, range));
     System.out.println("Aplicada: " + intervalList.toString.apply(intervalList));
-    System.out.println("Reducida: " + intervalList.doubleReduce.applyAsDouble(intervalList, interval -> interval.getLength.applyAsDouble(interval)) / range.getLength.applyAsDouble(range));
+    System.out.println("Reducida: " + intervalList.reduce.applyAsDouble(intervalList, interval -> interval.getLength.applyAsDouble(interval)) / range.getLength.applyAsDouble(range));
   }
 
 }

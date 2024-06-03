@@ -31,23 +31,20 @@ public class IntervalList extends List<Interval> {
 
   public void map(Interval interval) {
     Node<Interval> head = this.getHead();
-    while (head != null){
+    if (head != null){
       Interval headInterval = head.getElement();
-      if (headInterval.isIntersected(interval)){
-        head.setElement(headInterval.intersection(interval));
-      }
-      head = head.getNext();
+      head.setElement(headInterval.intersection(interval));
+      this.getTail().map(interval);
     }    
   }
 
-  public double doubleReduce(double identity, Interval interval) {
+  public double reduce(double identity, Interval interval) {
     Node<Interval> head = this.getHead();
-    double lengths = identity;
-    while (head != null){
-      lengths += head.getElement().getLength();
-      head = head.getNext();
-    } 
-    return lengths;
+    if (head == null) {
+      return identity;
+    } else {
+      return head.getElement().getLength() + this.getTail().reduce(identity, interval);
+    }
   }
 
 }

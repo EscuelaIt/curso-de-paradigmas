@@ -35,9 +35,7 @@ public class IntervalList {
     Node<Interval> current = this.list.getHead();
     while (current != null){
       Interval currentInterval = current.getElement();
-      if (currentInterval.isIntersected(interval)){
-        current.setElement(currentInterval.intersection(interval));
-      }
+      current.setElement(currentInterval.intersection(interval));
       current = current.getNext();
     }    
   }

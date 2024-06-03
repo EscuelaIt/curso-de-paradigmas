@@ -1,4 +1,4 @@
-package es.usantatecla.paradigms.mutable.recursive.process.highOrderXXX;
+package es.usantatecla.paradigms.mutable.recursive.process.highOrderX;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -62,9 +62,9 @@ public class List<T extends Stringable<T>> {
       }
   };  
 
-  public ToDoubleBiFunction<List<T>, ToDoubleFunction<T>> doubleReduce =
+  public ToDoubleBiFunction<List<T>, ToDoubleFunction<T>> reduce =
     (list, toDoubleFunction) -> {
-      double lengths = 0;
+      double lengths = 0.0;
       Node<T> current = list.getHead.apply(list);
       while (current != null){
         T currentElement = current.getElement.apply(current);

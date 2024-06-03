@@ -1,4 +1,4 @@
-package es.usantatecla.paradigms.mutable.recursive.process.highOrderXXX;
+package es.usantatecla.paradigms.mutable.recursive.process.highOrderX;
 
 import java.util.function.Function;
 import java.util.function.Predicate;

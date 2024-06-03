@@ -13,9 +13,9 @@ public class App {
     Interval range = new Interval().create.apply(Double.valueOf(0),Double.valueOf(10));
     
     System.out.println("Inicial: " + intervalList.toString.apply(intervalList));
-    intervalList.predicate.accept(intervalList, interval -> interval.isOnLeft.test(interval, range) || interval.isOnRight.test(interval, range));
+    intervalList.filter.accept(intervalList, interval -> interval.isOnLeft.test(interval, range) || interval.isOnRight.test(interval, range));
     System.out.println("Filtrada: " + intervalList.toString.apply(intervalList));
-    intervalList.unaryOperator.accept(intervalList, interval -> interval.intersection.apply(interval, range));
+    intervalList.map.accept(intervalList, interval -> interval.intersection.apply(interval, range));
     System.out.println("Aplicada: " + intervalList.toString.apply(intervalList));
     System.out.println("Reducida: " + intervalList.reduce.applyAsDouble(intervalList, interval -> interval.getLength.applyAsDouble(interval)) / range.getLength.applyAsDouble(range));
   }

@@ -17,7 +17,7 @@ public class App {
     System.out.println("Filtrada: " + IntervalList.toString(intervalList));
     IntervalList.map(intervalList, range);
     System.out.println("Aplicada: " + IntervalList.toString(intervalList));
-    System.out.println("Reducida: " + IntervalList.doubleReduce(intervalList, range)  / Interval.getLength(range));
+    System.out.println("Reducida: " + IntervalList.reduce(intervalList, 0.0, range)  / Interval.getLength(range));
   }
 
 }

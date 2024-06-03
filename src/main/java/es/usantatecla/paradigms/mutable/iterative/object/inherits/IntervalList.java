@@ -29,9 +29,7 @@ public class IntervalList extends List<Interval> {
     Node<Interval> current = this.getHead();
     while (current != null){
       Interval currentInterval = current.getElement();
-      if (currentInterval.isIntersected(interval)){
-        current.setElement(currentInterval.intersection(interval));
-      }
+      current.setElement(currentInterval.intersection(interval));
       current = current.getNext();
     }    
   }

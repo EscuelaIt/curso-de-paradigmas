@@ -1,8 +1,8 @@
 package es.usantatecla.paradigms.mutable.iterative.object.composition;
 public class Interval {
 
-  private double min;
-  private double max;
+  final private double min;
+  final private double max;
 
   public Interval(double min, double max) {
     this.min = min;

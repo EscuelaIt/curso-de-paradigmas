@@ -53,13 +53,13 @@ public class IntervalList {
     }
   }
 
-  public static double doubleReduce(IntervalList intervalList, Interval interval) {
+  public static double reduce(IntervalList intervalList, double identity, Interval interval) {
     Node<Interval> head = List.getHead(intervalList.list);
     if (head == null) {
       return 0.0;
     } else {
       return Interval.getLength(Node.getElement(head))
-          + IntervalList.doubleReduce(IntervalList.create(Node.getNext(head)), interval);
+          + IntervalList.reduce(IntervalList.create(Node.getNext(head)), identity, interval);
     }
   }
 

@@ -17,7 +17,7 @@ public class App {
     System.out.println("Filtrada: " + intervalList);
     intervalList.map(new IntervalUnaryOperator(range));
     System.out.println("Aplicada: " + intervalList);
-    System.out.println("Reducida: " + intervalList.doubleReduce(new IntervalToDoubleFunction())  / range.getLength());
+    System.out.println("Reducida: " + intervalList.reduce(0.0, new IntervalToDoubleFunction())  / range.getLength());
   }
 
 }

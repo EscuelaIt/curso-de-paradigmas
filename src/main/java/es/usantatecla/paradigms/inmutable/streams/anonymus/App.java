@@ -17,18 +17,16 @@ public class App {
     Interval range = new Interval(0,10);
 
     System.out.println("Inicial: " + 
-      intervalList.toString());
+      intervalList);
     System.out.println("Filtrada: " + 
       intervalList.stream()
         .filter(interval -> !interval.isOnLeft(range) && !interval.isOnRight(range))
-        .collect(Collectors.toList())
-        .toString());
+        .collect(Collectors.toList()));
     System.out.println("Aplicada: " + 
     intervalList.stream()
       .filter(interval -> !interval.isOnLeft(range) && !interval.isOnRight(range))
       .map(interval -> interval.intersection(range))
-      .collect(Collectors.toList())
-      .toString());
+      .collect(Collectors.toList()));
     System.out.println("Reducida: " +  
     intervalList.stream()
       .filter(interval -> !interval.isOnLeft(range) && !interval.isOnRight(range))

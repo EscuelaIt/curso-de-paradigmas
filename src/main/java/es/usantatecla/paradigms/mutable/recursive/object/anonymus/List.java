@@ -49,12 +49,12 @@ public class List<T> {
     }    
   }
 
-  public double doubleReduce(ToDoubleFunction<T> toDoubleFunction) {
+  public double reduce(double identity, ToDoubleFunction<T> toDoubleFunction) {
     Node<T> head = this.getHead();
     if (head == null) {
-      return 0.0;
+      return identity;
     } else {
-      return toDoubleFunction.applyAsDouble(head.getElement()) + this.getTail().doubleReduce(toDoubleFunction);
+      return toDoubleFunction.applyAsDouble(head.getElement()) + this.getTail().reduce(identity, toDoubleFunction);
     } 
   }
 
@@ -73,15 +73,21 @@ public class List<T> {
   protected void setHead(Node<T> head) {
     this.head = head;
   }
-
   public String toString() {
-    String result = "[";
-    Node<T> head = this.head;
-    while (head != null) {
-      result += head.getElement().toString() + (head.isLast()? "" : ", ");
-      head = head.getNext();
+    return "[" + this.toString(this.getHead()) + "]";
+  }
+
+  private String toString(Node<T> head) {
+    if (head == null) {
+      return "";
+    } else {
+      String string = head.getElement().toString();
+      if (head.isLast()) {
+        return string;
+      } else {
+        return string + ", " + this.toString(head.getNext());
+      }
     }
-    return result + "]";
   }
 
 }

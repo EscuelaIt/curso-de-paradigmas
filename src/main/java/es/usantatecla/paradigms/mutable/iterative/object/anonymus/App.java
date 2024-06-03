@@ -14,6 +14,7 @@ public class App {
 
     System.out.println("Inicial: " + intervalList);
     intervalList.filter(new Predicate<Interval>() {
+      
       public boolean test(Interval element) {
         return element.isOnLeft(range) 
         || element.isOnRight(range);
@@ -21,11 +22,9 @@ public class App {
     });
     System.out.println("Filtrada: " + intervalList);
     intervalList.map(new UnaryOperator<Interval>() {
+
       public Interval apply(Interval element) {
-        if (element.isIntersected(range)) {
-          return element.intersection(range);
-        }
-        return null;
+        return element.intersection(range);
       }
     });
     System.out.println("Aplicada: " + intervalList);

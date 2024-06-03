@@ -29,7 +29,7 @@ public class App {
       }
     });
     System.out.println("Aplicada: " + intervalList);
-    System.out.println("Reducida: " + intervalList.doubleReduce(new ToDoubleFunction<Interval>() {
+    System.out.println("Reducida: " + intervalList.reduce(0.0, new ToDoubleFunction<Interval>() {
     
       public double applyAsDouble(Interval interval){
         return interval.getLength();

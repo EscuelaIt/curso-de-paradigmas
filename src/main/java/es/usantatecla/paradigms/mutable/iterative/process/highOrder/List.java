@@ -33,7 +33,7 @@ public class List<T extends Stringable<T>> {
       }
   };
 
-  public BiConsumer<List<T>, Predicate<T>> predicate = 
+  public BiConsumer<List<T>, Predicate<T>> filter = 
     (list, predicate) -> {
       Node<T> current = list.getHead.apply(list);
       Node<T> previous = null;
@@ -52,7 +52,7 @@ public class List<T extends Stringable<T>> {
       }
   };
 
-  public BiConsumer<List<T>, UnaryOperator<T>> unaryOperator = 
+  public BiConsumer<List<T>, UnaryOperator<T>> map = 
     (list, unaryOperator) -> {
       Node<T> current = list.getHead.apply(list);
       while (current != null){

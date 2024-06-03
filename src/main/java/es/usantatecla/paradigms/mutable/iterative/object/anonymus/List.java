@@ -50,7 +50,7 @@ public class List<T> {
 
   public double reduce(double identity, ToDoubleFunction<T> toDoubleFunction){
     Node<T> current = this.getHead();
-    double lengths = 0.0;
+    double lengths = identity;
     while (current != null) {
       T currentElement = current.getElement();
       lengths += toDoubleFunction.applyAsDouble(currentElement);

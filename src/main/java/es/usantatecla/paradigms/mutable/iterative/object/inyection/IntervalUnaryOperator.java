@@ -9,12 +9,7 @@ public class IntervalUnaryOperator implements UnaryOperator<Interval> {
   }
 
   public Interval apply(Interval element) {
-    if (element.isIntersected(this.range)) {
-      return element.intersection(this.range);
-    }
-    return null;
+    return element.intersection(this.range);
   }
-
-  
   
 }
