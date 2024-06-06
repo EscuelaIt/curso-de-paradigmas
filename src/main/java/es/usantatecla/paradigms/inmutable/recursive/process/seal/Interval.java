@@ -58,6 +58,7 @@ public class Interval {
     return this.max;   
   }
 
+  @Override
   public String toString(){
     return "[" + this.min + ", " + this.max + "]";
  }
