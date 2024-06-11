@@ -1,5 +1,4 @@
-package es.usantatecla.paradigms.inmutable.iterative.object.anonymusX;
-
+package es.usantatecla.paradigms.inmutable.iterative.process.highOrder;
 public class Interval {
 
   final private double min;
@@ -64,4 +63,3 @@ public class Interval {
  }
 
 }
-

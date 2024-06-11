@@ -29,9 +29,9 @@ public class App {
     final ArrayList<Double> reduced = List.mapAsDouble(mapped, Interval::getLength);
     final double value = reduced.stream().reduce(0.0, Double::sum);
     return
-      "Inicial: " + list + "\n" +
-      "Filtrada: " + filtered + "\n" +
-      "Aplicada: " + mapped + "\n" +
+      "Inicial: " + List.toString(list) + "\n" +
+      "Filtrada: " + List.toString(filtered) + "\n" +
+      "Aplicada: " + List.toString(mapped) + "\n" +
       "Reducida: " + value / range.getLength();
   }
 

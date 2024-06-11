@@ -3,7 +3,6 @@ package es.usantatecla.paradigms.inmutable.recursive.process.seal;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.ArrayList;
-import java.util.function.BinaryOperator;
 import java.util.function.ToDoubleFunction;
 
 sealed interface List permits EmptyList, NonEmptyList {
@@ -15,7 +14,8 @@ sealed interface List permits EmptyList, NonEmptyList {
     static List filter(List list, Predicate<Interval> predicate) {
         return switch (list) {
             case EmptyList emptyList -> new EmptyList();
-            case NonEmptyList nonEmptyList -> (predicate.test(nonEmptyList.element())) ?
+            case NonEmptyList nonEmptyList -> 
+                (predicate.test(nonEmptyList.element())) ?
                     filter(nonEmptyList.tail(), predicate)
                     :
                     new NonEmptyList(nonEmptyList.element(), filter(nonEmptyList.tail(), predicate));
@@ -24,8 +24,10 @@ sealed interface List permits EmptyList, NonEmptyList {
 
     static List map(List list, UnaryOperator<Interval> unaryOperator) {
         return switch (list) {
-            case EmptyList emptyList -> new EmptyList();
-            case NonEmptyList nonEmptyList -> new NonEmptyList(
+            case EmptyList emptyList -> 
+                new EmptyList();
+            case NonEmptyList nonEmptyList -> 
+                new NonEmptyList(
                     unaryOperator.apply(nonEmptyList.element()),
                     map(nonEmptyList.tail(), unaryOperator));
         };
@@ -53,7 +55,7 @@ sealed interface List permits EmptyList, NonEmptyList {
                 return "[]";
             }
             case NonEmptyList nonEmptyList -> {
-                final String tailString = nonEmptyList.tail().toString();
+                final String tailString = List.toString(nonEmptyList.tail());
                 return "[" +
                         nonEmptyList.element() +
                         (tailString.equals("[]") ? "" : ", ") +

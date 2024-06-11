@@ -1,4 +1,5 @@
 package es.usantatecla.paradigms.inmutable.recursive.process.seal;
+
 public class Interval {
 
   final private double min;
